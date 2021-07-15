@@ -24,26 +24,26 @@ x_axis = np.zeros((num+1,), dtype=int)             # array to create the x-axis
 
 for i in range(1,num+1):
 
-    rand.seed()
+    rand.seed()                         # seeding the random number generator
 
-    monty = rand.choice(doors)
-    player = rand.choice(doors)
+    monty = rand.choice(doors)          # Monty comes to know the door
+    player = rand.choice(doors)         # player chooses a door
     door_dummy = doors[:]
-    door_dummy.remove(player)
+    door_dummy.remove(player)           # a dummy list to keep track of player's choice
     x_axis[i] = i
 
-    if(player == monty):
-        stay += 1
-        door_dummy.remove(rand.choice(door_dummy))
-        player_after_switch = door_dummy[0]
+    if(player == monty):                                                # case where player selects the right door
+        stay += 1                                                       # if player stays he wins
+        door_dummy.remove(rand.choice(door_dummy))                      # Monty gets two doors to open
+        player_after_switch = door_dummy[0]                             # door which player switches to
     else:
-        door_dummy.remove(list(set(door_dummy)-set([monty]))[0])
-        player_after_switch = door_dummy[0]
+        door_dummy.remove(list(set(door_dummy)-set([monty]))[0])        # case where player selects the wrong door
+        player_after_switch = door_dummy[0]                             # door which player can switch to
 
-    if(player_after_switch == monty):
+    if(player_after_switch == monty):                                   # if player wins after switching
         switch += 1
 
-    stay_arr[i] = stay/i
+    stay_arr[i] = stay/i                    # noting the probabilities so far
     switch_arr[i] = switch/i
     
 one_third = np.array([1/3]*(i+1))                       # a numpy array to draw the one-third line
@@ -51,6 +51,8 @@ two_third = np.array([2/3]*(i+1))                       # a numpy array to draw 
 
 font1={"family":"serif","color":"navy","size":16}       # font family for the labels
 font2={"fontweight":"bold"}
+
+# plotting the graph
 
 plt.title("Monty Hall Problem Simulation",fontdict=font1)
 plt.xlabel("NUMBER OF TRIALS",fontdict=font2)
