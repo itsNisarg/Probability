@@ -1,7 +1,7 @@
 # Probability Project
 ## Project on the Monty Hall Problem for the MC 121 Probability Course.
-</br>
-### Team:
+#### Team:
+
 <ol>
   <li> Kanishk Menaria
   <li> Aditya Shah
